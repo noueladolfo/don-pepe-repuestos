@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Don PEPE Repuestos: frenos, motor, filtros y suspensión para tu vehículo." />
+    <link rel="stylesheet" href="style.css" />
+    <script src="config.js" defer></script>
+    <script src="comun.js" defer></script>
+    <script src="script.js" defer></script>
+    <title>Don PEPE Repuestos</title>
+  </head>
+  <body id="inicio">
+    <header class="cabecera">
+      <h1 class="logo">
+        <a href="#inicio">
+          <span class="logo-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28">
+              <path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L14.9 3h-4l-.4 2.9a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.4 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1l.4 2.9h4l.4-2.9a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5zM12.9 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/>
+            </svg>
+          </span>
+          Don <span class="logo-acento">PEPE</span> Repuestos
+        </a>
+      </h1>
+
+      <div class="cabecera-derecha">
+        <nav aria-label="Principal">
+          <ul>
+            <li><a href="#categorias">Categorías</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#marcas">Marcas</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contactos">Contactos</a></li>
+          </ul>
+        </nav>
+
+        <button class="carrito-boton" type="button" aria-label="Abrir carrito de cotización" aria-controls="carrito">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+            <path fill="currentColor" d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM5.2 4l.9 2H21l-3.4 7.2a2 2 0 0 1-1.8 1.1H8.1l-.9 1.7h12.3v2H4l2.3-4.3L3 4H1V2h3.3z"/>
+          </svg>
+          <span class="carrito-contador" data-contador>0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Portada -->
+      <section class="hero">
+        <div class="contenedor hero-contenido">
+          <p class="hero-etiqueta">Tu tienda de repuestos de confianza</p>
+          <h2 class="hero-titulo">
+            Repuestos que mantienen tu auto <span>en marcha</span>
+          </h2>
+          <p class="hero-texto">
+            Frenos, motor, filtros y suspensión con buenos precios y asesoría
+            para que encuentres la pieza exacta.
+          </p>
+          <div class="hero-botones">
+            <a class="boton boton-primario" href="#productos">Ver productos</a>
+            <a class="boton boton-secundario" href="#contactos">Contáctanos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categorías -->
+      <section id="categorias" class="seccion">
+        <div class="contenedor">
+          <h2 class="titulo-seccion">Categorías</h2>
+          <p class="subtitulo">Todo lo que tu vehículo necesita, organizado por sistema. Toca una para ver sus productos.</p>
+
+          <div class="tarjetas">
+            <a class="tarjeta" href="#productos" data-ir-categoria="frenos">
+              <div class="tarjeta-imagen">
+                <img src="img/frenos.png" alt="Disco de freno, pastillas, zapatas y líquido de frenos" />
+              </div>
+              <div class="tarjeta-texto">
+                <h3>Frenos</h3>
+                <p>Pastillas, discos, zapatas y líquido de frenos.</p>
+              </div>
+            </a>
+
+            <a class="tarjeta" href="#productos" data-ir-categoria="motor">
+              <div class="tarjeta-imagen">
+                <img src="img/motor.png" alt="Bujías, correa de distribución, empaques y pistones" />
+              </div>
+              <div class="tarjeta-texto">
+                <h3>Motor</h3>
+                <p>Bujías, correas, empaques y repuestos internos.</p>
+              </div>
+            </a>
+
+            <a class="tarjeta" href="#productos" data-ir-categoria="filtros">
+              <div class="tarjeta-imagen">
+                <img src="img/filtros.png" alt="Filtros de aceite, aire, combustible y habitáculo" />
+              </div>
+              <div class="tarjeta-texto">
+                <h3>Filtros</h3>
+                <p>Filtros de aceite, aire, combustible y habitáculo.</p>
+              </div>
+            </a>
+
+            <a class="tarjeta" href="#productos" data-ir-categoria="suspension">
+              <div class="tarjeta-imagen">
+                <img src="img/suspension.png" alt="Amortiguador con resorte, rótula y bujes" />
+              </div>
+              <div class="tarjeta-texto">
+                <h3>Suspensión</h3>
+                <p>Amortiguadores, resortes, rótulas y bujes.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Productos -->
+      <section id="productos" class="seccion seccion-blanca">
+        <div class="contenedor">
+          <h2 class="titulo-seccion">Productos</h2>
+          <p class="subtitulo">Agrega lo que necesitas al carrito y pídenos la cotización por WhatsApp.</p>
+
+          <!-- Selector de vehículo (datos de la API gratuita NHTSA vPIC) -->
+          <div class="vehiculo">
+            <div class="vehiculo-titulo">
+              <span class="vehiculo-icono" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26">
+                  <path fill="currentColor" d="M18.9 6a1.5 1.5 0 0 0-1.4-1h-11a1.5 1.5 0 0 0-1.4 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8zM6.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 11l1.5-4.5h11L19 11z"/>
+                </svg>
+              </span>
+              <div>
+                <h3>Tu vehículo</h3>
+                <p>Indícanos tu auto para cotizar la pieza correcta.</p>
+              </div>
+            </div>
+
+            <!-- Paso 1: elegir el vehículo -->
+            <form class="vehiculo-form" data-vehiculo-form novalidate>
+              <div class="vehiculo-campos">
+                <label class="vehiculo-campo">
+                  <span>Año</span>
+                  <select name="anio" data-vehiculo-anio required>
+                    <option value="">Año</option>
+                  </select>
+                </label>
+                <label class="vehiculo-campo">
+                  <span>Marca</span>
+                  <select name="marca" data-vehiculo-marca required disabled>
+                    <option value="">Marca</option>
+                  </select>
+                </label>
+                <label class="vehiculo-campo">
+                  <span>Modelo</span>
+                  <select name="modelo" data-vehiculo-modelo required disabled>
+                    <option value="">Modelo</option>
+                  </select>
+                </label>
+                <label class="vehiculo-campo" data-vehiculo-manual-campo hidden>
+                  <span>Escribe tu modelo</span>
+                  <input type="text" name="modeloManual" data-vehiculo-manual placeholder="Ej.: Hilux" />
+                </label>
+                <button class="boton boton-primario vehiculo-guardar" type="submit">Guardar</button>
+              </div>
+
+              <details class="vin">
+                <summary>¿Tienes el número VIN (chasis)? Encuentra tu auto automáticamente</summary>
+                <div class="vin-fila">
+                  <input type="text" maxlength="17" data-vin placeholder="VIN de 17 caracteres" aria-label="Número VIN" />
+                  <button class="boton boton-oscuro" type="button" data-vin-buscar>Buscar VIN</button>
+                </div>
+              </details>
+
+              <p class="vehiculo-estado" data-vehiculo-estado role="status" aria-live="polite"></p>
+            </form>
+
+            <!-- Paso 2: vehículo ya elegido -->
+            <div class="vehiculo-elegido" data-vehiculo-elegido hidden>
+              <p>Cotizando repuestos para: <strong data-vehiculo-texto></strong></p>
+              <button class="vehiculo-cambiar" type="button" data-vehiculo-cambiar>Cambiar</button>
+            </div>
+          </div>
+
+          <div class="filtros" role="group" aria-label="Filtrar por categoría">
+            <button type="button" class="filtro activo" data-filtro="todos">Todos</button>
+            <button type="button" class="filtro" data-filtro="frenos">Frenos</button>
+            <button type="button" class="filtro" data-filtro="motor">Motor</button>
+            <button type="button" class="filtro" data-filtro="filtros">Filtros</button>
+            <button type="button" class="filtro" data-filtro="suspension">Suspensión</button>
+          </div>
+
+          <!-- JavaScript llena esta lista con los productos de script.js -->
+          <div class="productos" data-productos></div>
+
+          <noscript>
+            <p class="aviso">Activa JavaScript para ver los productos y usar el carrito.</p>
+          </noscript>
+
+          <p class="nota-precios">* Precios referenciales. La disponibilidad y el precio final se confirman por WhatsApp.</p>
+        </div>
+      </section>
+
+      <!-- Marcas -->
+      <section id="marcas" class="seccion">
+        <div class="contenedor">
+          <h2 class="titulo-seccion">Marcas</h2>
+          <p class="subtitulo">Trabajamos con marcas reconocidas:</p>
+          <ul class="marcas-lista">
+            <li>Bosch</li>
+            <li>NGK</li>
+            <li>Monroe</li>
+            <li>Brembo</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Nosotros -->
+      <section id="nosotros" class="seccion seccion-oscura">
+        <div class="contenedor nosotros">
+          <div class="nosotros-texto">
+            <h2 class="titulo-seccion">Nosotros</h2>
+            <p>
+              En Don PEPE Repuestos llevamos años ayudando a mantener los vehículos
+              de nuestros clientes en buen estado.
+            </p>
+            <p>
+              Ofrecemos repuestos de calidad, buenos precios y asesoría para que
+              encuentres la pieza que necesitas.
+            </p>
+          </div>
+
+          <ul class="valores">
+            <li>
+              <span class="valor-numero">01</span>
+              <h3>Calidad</h3>
+              <p>Repuestos de marcas reconocidas.</p>
+            </li>
+            <li>
+              <span class="valor-numero">02</span>
+              <h3>Buen precio</h3>
+              <p>Precios justos para cada bolsillo.</p>
+            </li>
+            <li>
+              <span class="valor-numero">03</span>
+              <h3>Asesoría</h3>
+              <p>Te ayudamos a elegir la pieza correcta.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contactos -->
+      <section id="contactos" class="seccion">
+        <div class="contenedor">
+          <h2 class="titulo-seccion">Contactos</h2>
+          <p class="subtitulo">Visítanos o escríbenos, con gusto te atendemos.</p>
+
+          <div class="contacto-grid">
+            <address class="contacto">
+              <div class="contacto-item">
+                <span class="contacto-etiqueta">Dirección</span>
+                <p>Calle Ejemplo 123, Ciudad</p>
+              </div>
+              <div class="contacto-item">
+                <span class="contacto-etiqueta">Teléfono</span>
+                <p><a href="tel:+000000000">000 000 000</a></p>
+              </div>
+              <div class="contacto-item">
+                <span class="contacto-etiqueta">Correo</span>
+                <p><a href="mailto:contacto@ejemplo.com">contacto@ejemplo.com</a></p>
+              </div>
+              <div class="contacto-item">
+                <span class="contacto-etiqueta">Horario</span>
+                <p>Lunes a sábado, 8:00 a 18:00</p>
+              </div>
+            </address>
+
+            <form class="formulario" data-formulario novalidate>
+              <h3>Escríbenos</h3>
+              <p class="formulario-ayuda">Tu mensaje se envía directo a nuestro WhatsApp.</p>
+
+              <div class="campo">
+                <label for="nombre">Nombre *</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" />
+              </div>
+
+              <div class="campo-doble">
+                <div class="campo">
+                  <label for="telefono">Teléfono</label>
+                  <input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Para devolverte la llamada" />
+                </div>
+                <div class="campo">
+                  <label for="vehiculo">Vehículo</label>
+                  <input id="vehiculo" name="vehiculo" type="text" placeholder="Marca, modelo y año" />
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¿Qué repuesto buscas?"></textarea>
+              </div>
+
+              <label class="casilla">
+                <input type="checkbox" name="incluirCarrito" data-incluir-carrito />
+                Incluir los productos de mi carrito
+              </label>
+
+              <p class="formulario-error" data-formulario-error role="alert"></p>
+
+              <button class="boton boton-whatsapp" type="submit">Enviar por WhatsApp</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <div class="contenedor pie-contenido">
+        <p>© 2026 Don PEPE Repuestos. Todos los derechos reservados.</p>
+        <div class="pie-enlaces">
+          <a class="pie-panel" href="admin.html">Acceso negocio</a>
+          <a class="volver-arriba" href="#inicio">Volver arriba ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Carrito lateral -->
+    <div class="carrito-fondo" data-cerrar-carrito hidden></div>
+    <aside class="carrito" id="carrito" aria-label="Carrito de cotización" aria-hidden="true">
+      <div class="carrito-cabecera">
+        <h2>Tu cotización</h2>
+        <button class="carrito-cerrar" type="button" data-cerrar-carrito aria-label="Cerrar carrito">×</button>
+      </div>
+
+      <p class="carrito-vehiculo" data-carrito-vehiculo hidden></p>
+
+      <p class="carrito-vacio" data-carrito-vacio>
+        Tu carrito está vacío.<br />Agrega productos para pedir una cotización.
+      </p>
+      <ul class="carrito-lista" data-carrito-lista></ul>
+
+      <div class="carrito-pie">
+        <div class="carrito-total">
+          <span data-carrito-total-etiqueta>Subtotal</span>
+          <strong data-carrito-total>$0</strong>
+        </div>
+        <p class="carrito-nota" data-carrito-nota>Precios referenciales. Te confirmamos disponibilidad y precio final.</p>
+        <button class="boton boton-primario carrito-cotizar" type="button" data-cotizar>Solicitar cotización</button>
+        <button class="carrito-vaciar" type="button" data-vaciar>Vaciar carrito</button>
+      </div>
+    </aside>
+
+    <!-- Ventana de cotización -->
+    <dialog class="cotizacion" data-cotizacion aria-labelledby="cotizacion-titulo">
+      <div class="cotizacion-barra">
+        <h2 id="cotizacion-titulo" data-cotizacion-titulo>Datos para tu cotización</h2>
+        <button class="cotizacion-cerrar" type="button" data-cerrar-cotizacion aria-label="Cerrar">×</button>
+      </div>
+
+      <!-- Paso 1: datos del cliente -->
+      <form class="cotizacion-datos" data-cotizacion-form novalidate>
+        <div class="campo">
+          <label for="cot-nombre" data-cot-nombre-etiqueta>Nombre o empresa *</label>
+          <input id="cot-nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: Juan Pérez o Taller El Rápido SRL" />
+        </div>
+
+        <div class="campo">
+          <label for="cot-telefono">Teléfono</label>
+          <input id="cot-telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Ej.: 809-555-1234" />
+        </div>
+
+        <label class="opcion-fiscal">
+          <input type="checkbox" name="fiscal" data-cot-fiscal />
+          <span>
+            <strong>Necesito factura con valor fiscal</strong>
+            <small>Comprobante de crédito fiscal a nombre de tu empresa o persona.</small>
+          </span>
+        </label>
+
+        <div class="campo" data-cot-rnc-campo hidden>
+          <label for="cot-rnc">RNC o cédula *</label>
+          <input id="cot-rnc" name="rnc" type="text" inputmode="numeric" maxlength="13" placeholder="RNC (9 dígitos) o cédula (11 dígitos)" />
+          <small class="campo-ayuda">Puedes escribirlo con o sin guiones.</small>
+        </div>
+
+        <p class="formulario-error" data-cot-error role="alert"></p>
+
+        <button class="boton boton-primario cotizacion-generar" type="submit">Generar cotización</button>
+      </form>
+
+      <!-- Paso 2: cotización generada -->
+      <div class="cotizacion-vista" data-cotizacion-vista hidden>
+        <p class="cot-registro" data-cot-registro role="status" hidden></p>
+        <div class="documento" data-documento></div>
+
+        <div class="cotizacion-acciones">
+          <button class="boton boton-whatsapp" type="button" data-cot-enviar>Enviar por WhatsApp</button>
+          <button class="boton boton-claro" type="button" data-cot-imprimir>Imprimir / PDF</button>
+          <button class="enlace-boton" type="button" data-cot-editar>Editar mis datos</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a class="whatsapp-flotante" data-whatsapp-flotante href="https://wa.me/" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+      <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+        <path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9 1 3.9.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/>
+      </svg>
+    </a>
+
+    <!-- Mensaje emergente -->
+    <div class="aviso-flotante" data-aviso role="status" aria-live="polite"></div>
+  </body>
+</html>

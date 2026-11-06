@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <script src="config.js" defer></script>
+    <script src="comun.js" defer></script>
+    <script src="js/html2pdf.bundle.min.js" defer></script>
+    <script src="admin.js" defer></script>
+    <title>Panel de cotizaciones · Don PEPE Repuestos</title>
+  </head>
+  <body class="panel-body">
+    <header class="panel-superior">
+      <p class="logo">
+        <span class="logo-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26">
+            <path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L14.9 3h-4l-.4 2.9a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.4 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1l.4 2.9h4l.4-2.9a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5zM12.9 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/>
+          </svg>
+        </span>
+        Don <span class="logo-acento">PEPE</span> · Panel
+      </p>
+      <div class="panel-superior-acciones">
+        <a class="enlace-claro" href="index.html">Ir a la tienda</a>
+        <button class="boton-contorno" type="button" data-salir hidden>Salir</button>
+      </div>
+    </header>
+
+    <main class="panel-main">
+      <!-- Aviso de modo de prueba -->
+      <p class="banda-prueba" data-banda-prueba hidden>
+        <strong>Modo de prueba:</strong> las cotizaciones se guardan solo en este navegador.
+        Clave del panel: <code>demo</code>. Para usar Google Sheets, sigue CONFIGURAR-GOOGLE-SHEETS.md.
+      </p>
+
+      <!-- Entrada -->
+      <section class="login" data-login>
+        <form class="login-tarjeta" data-login-form novalidate>
+          <h1>Panel de cotizaciones</h1>
+          <p>Ingresa la clave del negocio para ver y administrar las cotizaciones.</p>
+          <div class="campo">
+            <label for="clave">Clave</label>
+            <input id="clave" name="clave" type="password" autocomplete="current-password" required />
+          </div>
+          <p class="formulario-error" data-login-error role="alert"></p>
+          <button class="boton boton-primario login-boton" type="submit">Entrar</button>
+        </form>
+      </section>
+
+      <!-- Panel -->
+      <section class="panel" data-panel hidden>
+        <div class="panel-titulo">
+          <h1>Cotizaciones</h1>
+          <div class="panel-titulo-acciones">
+            <button class="boton boton-claro" type="button" data-recargar>↻ Actualizar</button>
+            <button class="boton boton-primario" type="button" data-nueva>+ Nueva cotización</button>
+          </div>
+        </div>
+
+        <div class="resumen">
+          <div class="resumen-tarjeta" data-estado="Nueva">
+            <span>Nuevas</span><strong data-resumen="Nueva">0</strong>
+          </div>
+          <div class="resumen-tarjeta" data-estado="Contactado">
+            <span>Contactados</span><strong data-resumen="Contactado">0</strong>
+          </div>
+          <div class="resumen-tarjeta" data-estado="Vendida">
+            <span>Vendidas</span><strong data-resumen="Vendida">0</strong>
+          </div>
+          <div class="resumen-tarjeta resumen-monto">
+            <span>Total vendido</span><strong data-resumen-monto>RD$0</strong>
+          </div>
+        </div>
+
+        <div class="filtros-panel">
+          <input type="search" data-buscar placeholder="Buscar por número, cliente, RNC, teléfono o vehículo…" aria-label="Buscar cotizaciones" />
+          <select data-filtro-estado aria-label="Filtrar por estado">
+            <option value="">Todos los estados</option>
+          </select>
+        </div>
+
+        <p class="panel-estado" data-panel-estado role="status" aria-live="polite"></p>
+
+        <div class="tabla-contenedor">
+          <table class="tabla-cotizaciones">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Vehículo</th>
+                <th class="num">Total</th>
+                <th>Estado</th>
+                <th><span class="solo-lectores">Acciones</span></th>
+              </tr>
+            </thead>
+            <tbody data-lista></tbody>
+          </table>
+          <p class="lista-vacia" data-vacio hidden>No hay cotizaciones que coincidan.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Detalle de una cotización -->
+    <dialog class="cotizacion" data-detalle aria-labelledby="detalle-titulo">
+      <div class="cotizacion-barra">
+        <h2 id="detalle-titulo" data-detalle-titulo>Cotización</h2>
+        <button class="cotizacion-cerrar" type="button" data-cerrar aria-label="Cerrar">×</button>
+      </div>
+      <div class="cotizacion-vista">
+        <div class="detalle-info no-imprimir">
+          <label class="detalle-estado">
+            Estado
+            <select data-detalle-estado></select>
+          </label>
+          <p class="detalle-meta" data-detalle-meta></p>
+        </div>
+        <p class="detalle-notas no-imprimir" data-detalle-notas hidden></p>
+
+        <div class="documento" data-detalle-doc></div>
+
+        <div class="cotizacion-acciones">
+          <button class="boton boton-whatsapp" type="button" data-accion="whatsapp">WhatsApp al cliente</button>
+          <button class="boton boton-claro" type="button" data-accion="pdf">Descargar PDF</button>
+          <button class="boton boton-claro" type="button" data-accion="imprimir">Imprimir</button>
+          <button class="boton boton-claro" type="button" data-accion="editar">Editar</button>
+          <button class="boton boton-peligro" type="button" data-accion="borrar">Borrar</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Crear / editar -->
+    <dialog class="cotizacion editor" data-editor aria-labelledby="editor-titulo">
+      <div class="cotizacion-barra">
+        <h2 id="editor-titulo" data-editor-titulo>Editar cotización</h2>
+        <button class="cotizacion-cerrar" type="button" data-cerrar aria-label="Cerrar">×</button>
+      </div>
+
+      <form class="editor-form" data-editor-form novalidate>
+        <fieldset>
+          <legend>Cliente</legend>
+          <div class="editor-grid">
+            <div class="campo">
+              <label for="ed-nombre">Nombre, empresa o razón social *</label>
+              <input id="ed-nombre" name="nombre" type="text" maxlength="120" />
+            </div>
+            <div class="campo">
+              <label for="ed-telefono">Teléfono</label>
+              <input id="ed-telefono" name="telefono" type="tel" maxlength="30" placeholder="809-555-1234" />
+            </div>
+          </div>
+          <label class="opcion-fiscal">
+            <input type="checkbox" name="fiscal" data-ed-fiscal />
+            <span><strong>Factura con valor fiscal</strong><small>Requiere RNC o cédula.</small></span>
+          </label>
+          <div class="campo" data-ed-rnc-campo hidden>
+            <label for="ed-rnc">RNC o cédula *</label>
+            <input id="ed-rnc" name="rnc" type="text" inputmode="numeric" maxlength="13" placeholder="9 u 11 dígitos" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Detalles</legend>
+          <div class="editor-grid">
+            <div class="campo">
+              <label for="ed-vehiculo">Vehículo</label>
+              <input id="ed-vehiculo" name="vehiculo" type="text" maxlength="120" placeholder="Marca, modelo y año" />
+            </div>
+            <div class="campo">
+              <label for="ed-estado">Estado</label>
+              <select id="ed-estado" name="estado" data-ed-estado></select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Productos</legend>
+          <div class="tabla-contenedor">
+            <table class="tabla-items">
+              <thead>
+                <tr><th>Descripción</th><th class="num">Cant.</th><th class="num">Precio</th><th class="num">Importe</th><th></th></tr>
+              </thead>
+              <tbody data-ed-items></tbody>
+            </table>
+          </div>
+          <p class="lista-vacia" data-ed-sin-items>Agrega al menos un producto.</p>
+
+          <div class="agregar-item">
+            <select data-ed-producto aria-label="Producto para agregar"></select>
+            <button class="boton boton-claro" type="button" data-ed-agregar>Agregar</button>
+          </div>
+
+          <div class="doc-totales editor-totales" data-ed-totales></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Notas internas</legend>
+          <div class="campo">
+            <label for="ed-notas" class="solo-lectores">Notas internas</label>
+            <textarea id="ed-notas" name="notas" rows="3" maxlength="1000" placeholder="Solo las ve el negocio. Ej.: Cliente pasa el viernes."></textarea>
+          </div>
+        </fieldset>
+
+        <p class="formulario-error" data-ed-error role="alert"></p>
+
+        <div class="editor-acciones">
+          <button class="enlace-boton" type="button" data-cerrar>Cancelar</button>
+          <button class="boton boton-primario" type="submit" data-ed-guardar>Guardar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="aviso-flotante" data-aviso role="status" aria-live="polite"></div>
+  </body>
+</html>

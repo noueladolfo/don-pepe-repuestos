@@ -1,0 +1,560 @@
+/* =========================================================
+   Don PEPE Repuestos - Estilos
+   ========================================================= */
+
+/* ---------- 1. Variables: colores y medidas en un solo lugar ---------- */
+:root {
+    --oscuro: #1f2a36;
+    --oscuro-2: #151d26;
+    --rojo: #e12d39;
+    --rojo-oscuro: #b81f2a;
+    --claro: #f5f7fa;
+    --blanco: #fff;
+    --gris: #52606d;
+    --gris-claro: #d9e0e7;
+
+    --radio: 12px;
+    --sombra: 0 4px 14px rgba(0, 0, 0, 0.08);
+    --sombra-fuerte: 0 18px 40px rgba(0, 0, 0, 0.18);
+    --alto-cabecera: 72px;
+}
+
+/* ---------- 2. Base ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;                      /* desplazamiento suave */
+    scroll-padding-top: var(--alto-cabecera);     /* que la cabecera fija no tape los títulos */
+}
+
+body {
+    font-family: system-ui, "Segoe UI", Arial, Helvetica, sans-serif;
+    color: var(--oscuro);
+    background-color: var(--claro);
+    line-height: 1.6;
+    min-height: 100vh;                            /* el pie siempre abajo */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Contorno visible al navegar con teclado */
+a:focus-visible {
+    outline: 3px solid var(--rojo);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ---------- 3. Cabecera fija ---------- */
+.cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: var(--alto-cabecera);
+    padding: 0 max(20px, calc((100% - 1160px) / 2));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(31, 42, 54, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 3px solid var(--rojo);
+    color: var(--blanco);
+}
+
+.logo {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo-icono {
+    display: grid;
+    color: var(--rojo);
+    transition: transform 0.6s ease;
+}
+
+.logo a:hover .logo-icono {
+    transform: rotate(180deg);                    /* el engranaje gira */
+}
+
+.logo-acento {
+    color: var(--rojo);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    position: relative;
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 0;
+}
+
+/* Línea roja que crece debajo del enlace */
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--rojo);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ---------- 4. Portada (hero) ---------- */
+.hero {
+    position: relative;
+    min-height: min(78vh, 680px);
+    display: flex;
+    align-items: center;
+    color: var(--blanco);
+    background:
+        linear-gradient(100deg, rgba(21, 29, 38, 0.97) 0%, rgba(21, 29, 38, 0.85) 45%, rgba(21, 29, 38, 0.35) 100%),
+        url("img/frenos.png") center / cover no-repeat;
+    overflow: hidden;
+}
+
+/* Franja roja diagonal decorativa */
+.hero::after {
+    content: "";
+    position: absolute;
+    right: -10%;
+    bottom: -60px;
+    width: 60%;
+    height: 120px;
+    background-color: var(--rojo);
+    transform: rotate(-4deg);
+    opacity: 0.9;
+}
+
+.hero-contenido {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.hero-etiqueta {
+    display: inline-block;
+    padding: 6px 14px;
+    margin-bottom: 20px;
+    border: 1px solid var(--rojo);
+    border-radius: 999px;
+    color: #ff8a92;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: aparecer 0.8s ease both;
+}
+
+.hero-titulo {
+    max-width: 680px;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    animation: aparecer 0.8s 0.15s ease both;
+}
+
+.hero-titulo span {
+    color: var(--rojo);
+}
+
+.hero-texto {
+    max-width: 520px;
+    font-size: 1.15rem;
+    color: var(--gris-claro);
+    margin-bottom: 32px;
+    animation: aparecer 0.8s 0.3s ease both;
+}
+
+.hero-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    animation: aparecer 0.8s 0.45s ease both;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- 5. Botones ---------- */
+.boton {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton:hover {
+    transform: translateY(-3px);
+}
+
+.boton-primario {
+    background-color: var(--rojo);
+    color: var(--blanco);
+    box-shadow: 0 8px 20px rgba(225, 45, 57, 0.4);
+}
+
+.boton-primario:hover {
+    background-color: var(--rojo-oscuro);
+}
+
+.boton-secundario {
+    border: 2px solid var(--blanco);
+    color: var(--blanco);
+}
+
+.boton-secundario:hover {
+    background-color: var(--blanco);
+    color: var(--oscuro);
+}
+
+/* ---------- 6. Secciones ---------- */
+.seccion {
+    padding: 90px 0;
+}
+
+.seccion-blanca {
+    background-color: var(--blanco);
+}
+
+.seccion-oscura {
+    background-color: var(--oscuro);
+    color: var(--blanco);
+}
+
+.titulo-seccion {
+    position: relative;
+    display: inline-block;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    padding-bottom: 12px;
+}
+
+/* Barrita roja debajo de cada título */
+.titulo-seccion::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--rojo);
+}
+
+.subtitulo {
+    color: var(--gris);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* ---------- 7. Tarjetas de categorías ---------- */
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+}
+
+.tarjeta {
+    background-color: var(--blanco);
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    border-top: 4px solid transparent;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-fuerte);
+    border-top-color: var(--rojo);
+}
+
+.tarjeta-imagen {
+    overflow: hidden;
+}
+
+.tarjeta-imagen img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tarjeta:hover .tarjeta-imagen img {
+    transform: scale(1.08);                       /* zoom en la foto */
+}
+
+.tarjeta-texto {
+    padding: 20px 22px 26px;
+}
+
+.tarjeta-texto h3 {
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+}
+
+.tarjeta-texto p {
+    color: var(--gris);
+}
+
+/* ---------- 8. Marcas ---------- */
+.marcas-lista {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.marcas-lista li {
+    display: grid;
+    place-items: center;
+    height: 110px;
+    border: 2px solid var(--gris-claro);
+    border-radius: var(--radio);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--gris);
+    transition: all 0.3s ease;
+}
+
+.marcas-lista li:hover {
+    border-color: var(--rojo);
+    color: var(--rojo);
+    transform: scale(1.05);
+}
+
+/* ---------- 9. Nosotros ---------- */
+.nosotros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.nosotros-texto .titulo-seccion {
+    margin-bottom: 24px;
+}
+
+.nosotros-texto p {
+    color: var(--gris-claro);
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.valores {
+    list-style: none;
+    display: grid;
+    gap: 18px;
+}
+
+.valores li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+    align-items: center;
+    padding: 22px 26px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--rojo);
+    border-radius: 0 var(--radio) var(--radio) 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.valores li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(8px);
+}
+
+.valor-numero {
+    grid-row: span 2;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--rojo);
+}
+
+.valores p {
+    color: var(--gris-claro);
+}
+
+/* ---------- 10. Contactos ---------- */
+.contacto {
+    font-style: normal;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.contacto-item {
+    background-color: var(--blanco);
+    padding: 26px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    border-bottom: 4px solid var(--rojo);
+}
+
+.contacto-etiqueta {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--rojo);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.contacto-item p {
+    font-size: 1.05rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.contacto-item a {
+    text-decoration: none;
+}
+
+.contacto-item a:hover {
+    color: var(--rojo);
+}
+
+/* ---------- 11. Pie ---------- */
+.pie {
+    background-color: var(--oscuro-2);
+    color: var(--gris-claro);
+    border-top: 3px solid var(--rojo);
+    padding: 28px 0;
+    font-size: 0.95rem;
+}
+
+.pie-contenido {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.volver-arriba {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.volver-arriba:hover {
+    color: var(--rojo);
+}
+
+/* ---------- 12. Celulares y tablets ---------- */
+@media (max-width: 800px) {
+    :root {
+        --alto-cabecera: 110px;
+    }
+
+    .cabecera {
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    nav ul {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: min(70vh, 600px);
+        text-align: center;
+    }
+
+    .hero-titulo,
+    .hero-texto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-botones {
+        justify-content: center;
+    }
+
+    .seccion {
+        padding: 60px 0;
+    }
+
+    .nosotros {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .pie-contenido {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* ---------- 13. Respeto a quien prefiere menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
